@@ -1,38 +1,38 @@
-const inputBox =document.getElementById("inputBox")
-const inputBtn =document.getElementById("inputBtn")
-const listContainer =document.getElementById("list-container")
+let todoList =JSON.parse(localStorage.getItem("task"))||[]
+const addTodo = document.getElementById("inputBtn")
+const inputBox = document.getElementById("inputBox")
 
+displayItems()
 
-inputBtn.addEventListener("click",()=>{
-    if(inputBox.value===''){
-        alert("Write a task to Add")
-    }else{
-        let li = document.createElement("li")
-        li.innerHTML = inputBox.value
-        listContainer.appendChild(li)
-
-        let span = document.createElement("span")
-        span.innerHTML = "\u00d7"
-        li.appendChild(span)
-
-    }
+addTodo.addEventListener("click",()=>{
+    let todoItem = inputBox.value
+    todoList.push(todoItem)
     inputBox.value=''
-    saveTask()
-})
-listContainer.addEventListener("click",(e)=>{
-    if(e.target.tagName==="LI"){
-        e.target.classList.toggle("checked")
-        saveTask()
-    }else if(e.target.tagName==='SPAN'){
-        e.target.parentElement.remove()
-        saveTask()
-    }
-})
+    saveAndDisplayItem()
 
-function saveTask(){
-    localStorage.setItem("Task", listContainer.innerHTML)
+})
+function displayItems(){
+    let displayElement = document.getElementById("list-container")
+    displayElement.innerHTML =''
+    for(let i=0; i<todoList.length; i++){
+        displayElement.innerHTML += `
+        <div class='listRow'>
+        <li >${todoList[i]}</li>
+        <span class='delete-btn' onclick='deleteItem(${i}); saveAndDisplayItem()'>x</span>
+        </div>
+        `
+    }
+    console.log(todoList);
 }
-function showSavedTask(){
-    listContainer.innerHTML = localStorage.getItem("Task")
+function saveAndDisplayItem(){
+    saveData()
+    displayItems()
 }
-showSavedTask()
+function deleteItem(index){
+    todoList.splice(index,1)
+    saveAndDisplayItem()
+}
+function saveData(){
+    localStorage.setItem("task",JSON.stringify(todoList))
+}
+saveAndDisplayItem()

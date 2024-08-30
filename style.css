@@ -23,7 +23,7 @@ align-items: center; */
     transform: translate(-50%,-50%);
     padding: 30px 30px 30px;
     border-radius: 10px;
-    
+
 
 }
 .todo-app h2{
@@ -60,45 +60,47 @@ button{
 }button:hover{
     background-color: #2873e3;
 }
+
 ul li{
-    list-style: none;
-    font-size: 1.25rem;
-    padding: 20px 10px;
+    list-style-type: none;
+    padding: 5px 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+
+
+}
+
+
+.listRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+ul{
     position: relative;
+    padding: 0;
+
+}
+#list-container {
+    max-width: 100%; /* Ensure container doesn't exceed the parent's width */
+     /* Break long words to avoid overflow */
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+    overflow-x: hidden; /* Hide horizontal overflow if it occurs */
+    overflow-wrap:anywhere;
+}
+.delete-btn{
+    /* margin-left: 10px; */
+    color: rgb(243, 24, 24);
+    font-weight: 300;
+    font-size: 1.5rem;
+    padding: 0 5px;
+    font-family: Verdana, Geneva, Tahoma, sans;
+
+    /* padding: 4px 8px; */
     cursor: pointer;
+    border-radius: 20px;
+    /* background-color: rgb(215, 32, 32); */
 }
-ul li::before{
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    height: 28px;
-    width: 28px;
-    background-image: url(images/unchecked.png);
-    background-size: cover;
-    background-position: center;
-    top: 19px;
-    left:-25px;
 
-}
-ul li.checked{
-    color: #686868;
-    text-decoration: line-through;
-}
-ul li.checked::before{
-    background-image: url(images/checked.png);
-}
-ul li span{
-    position: absolute;
-    right: 0;
-    font-size: 1.4rem;
-    width: 30px;
-    height: 30px;
-    /* border-radius: 50%; */
-
-    text-align: center;
-    /* line-height: 40px; */
-    border-radius: 50%;
-}
-ul li span:hover{
-    background-color: #0066ff62;
-}
